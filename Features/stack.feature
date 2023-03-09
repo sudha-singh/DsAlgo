@@ -15,8 +15,8 @@ When The user clicks on Get Started tab of stack box
 Then The user directed to stack data structure page
 When The user click on operation in stack link
 Then The user directed to operation in stack page
-#When The user click on practice question link it navigates to  practice page 
-#Then The user directed to practice page
+When The user click on practice question link it navigates to  practice page 
+Then The user directed to practice page
 When The user click on try here button on operations in stack page
 Then The user directed to Try Editor page of operations in stack page having run button to test
 When The user enter valid python code in tryEditor 

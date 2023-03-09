@@ -3,6 +3,8 @@ package stepDefination;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+
 import PageObject.Stack;
 import io.cucumber.java.en.*;
 import io.github.bonigarcia.wdm.WebDriverManager;
@@ -11,10 +13,12 @@ public class stackStepDef {
 	
 	public WebDriver driver;
 	public Stack stack;
+	//https://groups.google.com/g/chromedriver-users/c/xL5-13_qGaA
 	@Given("The user is on signin page of DsAlgo portal")
 	public void the_user_is_on_signin_page_of_ds_algo_portal() {
-		WebDriverManager.chromedriver().setup();
+		WebDriverManager.chromedriver().driverVersion("103.0.5060.66").setup();
 		driver = new ChromeDriver();
+		driver.manage().window().maximize();
 		stack = new Stack(driver);
 		driver.get("https://dsportalapp.herokuapp.com/home");
 		driver.findElement(By.xpath("//a[normalize-space()='Sign in']"))
@@ -38,7 +42,8 @@ public class stackStepDef {
 
 	
 	@Then("The user redirected to homepage")
-	public void the_user_redirected_to_homepage() {	  
+	public void the_user_redirected_to_homepage() {	
+		System.out.println("Page Title is: "+driver.getTitle());
 	}
 
 	@Given("The user is in Ds Algo home page")
@@ -52,6 +57,7 @@ public class stackStepDef {
 
 	@Then("The user directed to stack data structure page")
 	public void the_user_directed_to_stack_data_structure_page() {
+		System.out.println("Page Title is : "+driver.getTitle());
 	}
 
 	@Given("The user is in stack page after logged in")
@@ -64,7 +70,8 @@ public class stackStepDef {
 	}
 
 	@Then("The user directed to operation in stack page")
-	public void the_user_directed_to_operation_in_stack_page() {	  
+	public void the_user_directed_to_operation_in_stack_page() {	
+		Assert.assertEquals(driver.getTitle(), "Operations in Stack");
 	}
 	
 	@When("The user click on practice question link it navigates to  practice page")
@@ -74,6 +81,7 @@ public class stackStepDef {
 	
 	@Then("The user directed to practice page")
 	public void the_user_directed_to_practice_page() {
+		Assert.assertEquals(driver.getTitle(), " Practice Questions ");
 	}
 
 	@Given("The user is in operations in stack page after logged in")
@@ -87,6 +95,7 @@ public class stackStepDef {
 
 	@Then("The user directed to Try Editor page of operations in stack page having run button to test")
 	public void the_user_directed_to_try_editor_page_of_operations_in_stack_page_having_run_button_to_test() {
+		Assert.assertEquals(driver.getTitle(), "Assessment");
 	}
 
 	@Given("The user is in a tryEditor page having run button to test")
@@ -115,6 +124,7 @@ public class stackStepDef {
 
 	@Then("The user directed to implementation page")
 	public void the_user_directed_to_implementation_page() {
+		Assert.assertEquals(driver.getTitle(), "Implementation");
 	}
 
 	@When("The user click on try here button on implementation page")
@@ -123,7 +133,8 @@ public class stackStepDef {
 	}
 
 	@Then("The user directed to Try Editor page of implementation page having run button to test")
-	public void the_user_directed_to_try_editor_page_of_implementation_page_having_run_button_to_test() {	    
+	public void the_user_directed_to_try_editor_page_of_implementation_page_having_run_button_to_test() {	 
+		Assert.assertEquals(driver.getTitle(), "Assessment");
 	}
 	
 	@When("The user click on application link")
@@ -132,6 +143,7 @@ public class stackStepDef {
 	}
 	@Then("The user directed to application page")
 	public void the_user_directed_to_application_page() {
+		Assert.assertEquals(driver.getTitle(), "Applications");
 	}
 
 	@When("The user click on try here button on application page")
@@ -142,6 +154,4 @@ public class stackStepDef {
 	@Then("The user directed to Try Editor page of application page having run button to test")
 	public void the_user_directed_to_try_editor_page_of_application_page_having_run_button_to_test() {
 	}
-	
-	
 }

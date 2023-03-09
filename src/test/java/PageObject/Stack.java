@@ -1,17 +1,21 @@
 package PageObject;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 
 public class Stack {
 
 	WebDriver driver;
-	public Stack (WebDriver Driver) {
+	JavascriptExecutor jse ;		
+
+	public Stack (WebDriver driver) {
 		
-		PageFactory.initElements (Driver, this);
+		PageFactory.initElements (driver, this);
+		this.jse =  (JavascriptExecutor) driver;
 	}
 	@FindBy(id = "id_username" )
 	WebElement email;
@@ -34,7 +38,10 @@ public class Stack {
 	@FindBy(xpath = "//a[@class='btn btn-info']")
 	WebElement operatryHereTab;
 	
-	@FindBy (xpath = "//pre[@class=' CodeMirror-line ']")
+//	@FindBy (xpath = "//pre[@class='CodeMirror-gutter-filler']")
+//	WebElement testCode1;
+//	
+	@FindBy (name = "code")
 	WebElement testCode1;
 	
 	@FindBy (xpath = "//button[@type='button']")
@@ -94,14 +101,20 @@ public class Stack {
 	}
 	
 	public void testCode1() {
-		WebElement textArea = driver.findElement(By.xpath("//div[@class='CodeMirror cm-s-default']"));
-		textArea.click();
+		//driver.manage().window().maximize();
+		//WebElement textArea = driver.findElement(By.xpath("//pre[@class=' CodeMirror-line ']"));
+		jse.executeScript("document.getElementsByClassName('CodeMirror-gutter-filler')[0].value='Neeraj'");
+		System.out.println("sudhasingh"+testCode1.getAttribute("value"));
+		//textArea.click();
 		//testCode1.click();
-		System.out.println("tag name sudha"+textArea.getTagName());
-		testCode1=driver.switchTo().activeElement();
-		testCode1.sendKeys("print(\"Hello World\"");	
+		//System.out.println("tag name sudha"+textArea.getTagName());
+		//testCode1=driver.switchTo().activeElement();
+		//WebElement focuselement = driver.switchTo().activeElement();
+		//focuselement.click();
+		//focuselement.sendKeys(code);
+		//testCode1.sendKeys("print(\"Hello World\"");	
 		}
-	
+
 	public void testCodeRunButton() {
 		runButton1.click();
 	}
@@ -114,13 +127,13 @@ public class Stack {
 		impletryHeretab.click();
 	}
 	
-	public void testCode2() {
-			testCode2.sendKeys("print(\"Hello World\"");	
-		}
+//	public void testCode2() {
+//			testCode2.sendKeys("print(\"Hello World\"");	
+//	}
 	
-	public void testCodeRunButton2() {
-		runButton2.click();
-	}
+//	public void testCodeRunButton2() {
+//		runButton2.click();
+//	}
 	
 	public void application() {
 		applicationTab.click();
@@ -128,7 +141,23 @@ public class Stack {
 	
 	public void applicationtryheretab() {
 		applitryHeretab.click();
+//		WebElement focuselement = driver.switchTo().activeElement();
+//		focuselement.click();	
 	}
+	
+	
+	
+//	public void operationsinstack() {
+//		opinstack();
+//		optryhere();
+//		String code = "print 'Hello from operations in stack'";
+//		testCode1(code);
+//		testCodeRunButton();
+//	}
+//	
+//	public void implementationinstack() {
+//		implementation();
+//	}
 	
 }
 
